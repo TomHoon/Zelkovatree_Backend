@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -72,5 +73,10 @@ public class BoardController {
 	public List<BoardEntity> getBoard(){
 		List<BoardEntity> list =  bDao.getBoard();
 		return list;
+	}
+	@PostMapping("/getBoardDetail")
+	public BoardEntity getBoardDetail(@RequestBody BoardEntity bEnt){
+		BoardEntity result =  bDao.getBoardDetail(bEnt);
+		return result;
 	}
 }

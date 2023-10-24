@@ -25,4 +25,11 @@
 	<select id="getBoard">
 		select * from board;
 	</select>
+	
+	<select id="getBoardDetail" parameterType="com.zelkovatree.entity.BoardEntity">
+		select * 
+		from board
+		where bno = #{bno}
+		;
+	</select>
 </mapper>
