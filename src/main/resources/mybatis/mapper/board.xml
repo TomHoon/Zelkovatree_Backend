@@ -21,4 +21,8 @@
 				#{hit}
 			);
 	</insert>
+	
+	<select id="getBoard">
+		select * from board;
+	</select>
 </mapper>

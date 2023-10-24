@@ -2,8 +2,10 @@ package com.zelkovatree.controller;
 
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +22,7 @@ public class BoardController {
 	
 	@Autowired
 	BoardDao bDao;
+	ObjectMapper mapper = new ObjectMapper();
 	
 	@PostMapping("/addBoard")
 	public String pushImage(@RequestPart(required = false)  MultipartFile uploadFile, @RequestPart String param) throws JsonMappingException, JsonProcessingException {
@@ -27,7 +30,6 @@ public class BoardController {
         Date date = new Date();
         StringBuilder sb = new StringBuilder();
         
-        ObjectMapper mapper = new ObjectMapper();
         BoardEntity bEnt;
 		bEnt = mapper.readValue(param, BoardEntity.class);
 		
@@ -46,7 +48,6 @@ public class BoardController {
 //        	◆◆운영서버
 //        	File dest = new File("/gnsdl2846/tomcat/webapps/upload/" + sb.toString());
         	
-//        	C:\Users\gnsdl\Documents\ZelkovaTree\zelkovatree-project\public\image
         	File temp = new File("C:/Users/gnsdl/Documents/Zelkovatree/zelkovatree-project/public/image/" + sb.toString());
         	bEnt.setFile_path("/upload/" + sb.toString());        	
         	
@@ -58,4 +59,18 @@ public class BoardController {
         int result = bDao.addBoard(bEnt);
 		return sb.toString();
     }
+	
+	@PostMapping("/enrollBoard")
+	public String enrollBoard(@RequestPart String param) throws JsonMappingException, JsonProcessingException {
+		BoardEntity bEnt;
+		bEnt = mapper.readValue(param, BoardEntity.class);
+		bDao.addBoard(bEnt);
+		return null;
+	}
+	
+	@GetMapping("/getBoard")
+	public List<BoardEntity> getBoard(){
+		List<BoardEntity> list =  bDao.getBoard();
+		return list;
+	}
 }
