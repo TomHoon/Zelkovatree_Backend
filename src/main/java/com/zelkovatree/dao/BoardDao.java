@@ -12,4 +12,5 @@ public interface BoardDao {
 	public int addBoard(BoardEntity bEnt);
 	public List<BoardEntity> getBoard();
 	public BoardEntity getBoardDetail(BoardEntity bEnt);
+	public List<BoardEntity> getBoardByPage(int start);
 }

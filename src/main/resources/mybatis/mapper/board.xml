@@ -32,4 +32,10 @@
 		where bno = #{bno}
 		;
 	</select>
+	
+	<select id="getBoardByPage">
+		select * 
+		from board
+		limit #{start}, 10
+	</select>
 </mapper>

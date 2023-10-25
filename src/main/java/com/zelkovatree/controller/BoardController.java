@@ -3,6 +3,7 @@ package com.zelkovatree.controller;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,7 +58,7 @@ public class BoardController {
         } catch (Exception e) {
         	System.out.println(e);
         }
-        int result = bDao.addBoard(bEnt);
+//        int result = bDao.addBoard(bEnt);
 		return sb.toString();
     }
 	
@@ -78,5 +79,14 @@ public class BoardController {
 	public BoardEntity getBoardDetail(@RequestBody BoardEntity bEnt){
 		BoardEntity result =  bDao.getBoardDetail(bEnt);
 		return result;
+	}
+	
+	@PostMapping("/getBoardByPage")
+	public List<BoardEntity> getBoardByPage(@RequestBody Map<String, Integer> page){
+		int a = page.get("page");
+		int start= (a-1)*10;
+		List<BoardEntity> list =  bDao.getBoardByPage(start);
+		return list;
+//		return null;
 	}
 }
