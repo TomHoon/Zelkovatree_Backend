@@ -12,6 +12,7 @@ public class BoardEntity {
 	private String author;
 	private String hit;
 	private String write_date;
+	private String gubun;
 	
 	public String getBno() {
 		return bno;
@@ -61,4 +62,11 @@ public class BoardEntity {
 	public void setWrite_date(String write_date) {
 		this.write_date = write_date;
 	}
+	public String getGubun() {
+		return gubun;
+	}
+	public void setGubun(String gubun) {
+		this.gubun = gubun;
+	}
+	
 }

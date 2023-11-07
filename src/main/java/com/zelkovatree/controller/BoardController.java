@@ -26,6 +26,8 @@ public class BoardController {
 	BoardDao bDao;
 	ObjectMapper mapper = new ObjectMapper();
 	
+	static String temp_file_path = null;
+	
 	@PostMapping("/addBoard")
 	public String pushImage(@RequestPart(required = false)  MultipartFile uploadFile, @RequestPart String param) throws JsonMappingException, JsonProcessingException {
         // 시간과 originalFilename으로 매핑 시켜서 src 주소를 만들어 낸다.
@@ -54,7 +56,8 @@ public class BoardController {
         	bEnt.setFile_path("/upload/" + sb.toString());        	
         	
         	uploadFile.transferTo(temp);
-
+        	temp_file_path = sb.toString();
+        	
         } catch (Exception e) {
         	System.out.println(e);
         }
@@ -66,6 +69,7 @@ public class BoardController {
 	public String enrollBoard(@RequestPart String param) throws JsonMappingException, JsonProcessingException {
 		BoardEntity bEnt;
 		bEnt = mapper.readValue(param, BoardEntity.class);
+		bEnt.setFile_path(temp_file_path);
 		bDao.addBoard(bEnt);
 		return null;
 	}

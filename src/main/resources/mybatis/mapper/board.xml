@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+<!--개발에서는 테이블명 board 바꿔야함-->
+
+
+
+
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zelkovatree.dao.BoardDao">
 	<insert id="addBoard">
-		insert into board(
+		insert into board2(
 			title, 
 			content, 
 			file_name, 
@@ -23,19 +32,19 @@
 	</insert>
 	
 	<select id="getBoard">
-		select * from board;
+		select * from board2;
 	</select>
 	
 	<select id="getBoardDetail" parameterType="com.zelkovatree.entity.BoardEntity">
 		select * 
-		from board
+		from board2
 		where bno = #{bno}
 		;
 	</select>
 	
 	<select id="getBoardByPage">
 		select * 
-		from board
-		limit #{start}, 10
+		from board2
+		limit #{start}, 12
 	</select>
 </mapper>
