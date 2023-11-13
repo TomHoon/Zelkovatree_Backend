@@ -3,7 +3,13 @@
 
 
 
-<!--개발에서는 테이블명 board 바꿔야함-->
+<!--
+개발, 운영 
+테이블명 다름
+
+개발	board
+운영 board2
+-->
 
 
 
@@ -19,7 +25,8 @@
 			file_name, 
 			file_path, 
 			author, 
-			hit
+			hit,
+			gubun
 			) 
 			values (
 				#{title}, 
@@ -27,12 +34,13 @@
 				#{file_name}, 
 				#{file_path}, 
 				#{author}, 
-				#{hit}
+				#{hit},
+				#{gubun}
 			);
 	</insert>
 	
 	<select id="getBoard">
-		select * from board2;
+		select * from board2 order by bno desc;
 	</select>
 	
 	<select id="getBoardDetail" parameterType="com.zelkovatree.entity.BoardEntity">

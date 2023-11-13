@@ -44,18 +44,19 @@ public class BoardController {
         	
 //        	◆◆ 로컬
 //    	    File dest = new File("C://Users//gnsdl//Desktop//test//public/" + sb.toString());
+//        	◆◆ 느티나무 로컬
+//        	File temp = new File("C:/Users/gnsdl/Documents/Zelkovatree/zelkovatree-project/public/image/" + sb.toString());
         	
         	// 피시방 임시
 //        	File dest = new File("C://Users//Administrator//Downloads//CommunityProject//public/" + sb.toString());
         	bEnt.setFile_path(sb.toString());
 
 //        	◆◆운영서버
-//        	File dest = new File("/gnsdl2846/tomcat/webapps/upload/" + sb.toString());
+        	File dest = new File("/gnsdl2846/tomcat/webapps/upload/" + sb.toString());
         	
-        	File temp = new File("C:/Users/gnsdl/Documents/Zelkovatree/zelkovatree-project/public/image/" + sb.toString());
         	bEnt.setFile_path("/upload/" + sb.toString());        	
         	
-        	uploadFile.transferTo(temp);
+        	uploadFile.transferTo(dest);
         	temp_file_path = sb.toString();
         	
         } catch (Exception e) {
